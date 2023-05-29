@@ -15,13 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DebCardTest {
 
-    private WebDrives driver;
+    private WebDriver driver;
 
     @BeforeAll
 
-    public  void setupAll() {
+    static void setupAll() {
 
-        System.setProperty("webdriver.chrome.driver", ",/driver/win/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\driver\\win\\chromedriver.exe");
+
     }
 
     @BeforeEach
@@ -43,8 +44,8 @@ public class DebCardTest {
     }
 
     @Test
-    public void test() {
-        driver.get("http://http://localhost:9999/")
+    void test() {
+        driver.get("http://http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов Иванович");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997777777");
 
