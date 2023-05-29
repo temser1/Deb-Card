@@ -1,6 +1,6 @@
 package ru.netology;
 
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,17 +10,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DebCardTest {
 
-    private WebDriver driver;
+    private WebDrives driver;
 
     @BeforeAll
 
-    public static void setupAll() {
+    public  void setupAll() {
 
-        WebDriver.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", ",/driver/win/chromedriver.exe");
     }
 
     @BeforeEach
@@ -43,6 +44,7 @@ public class DebCardTest {
 
     @Test
     public void test() {
+        driver.get("http://http://localhost:9999/")
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов Иванович");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997777777");
 
