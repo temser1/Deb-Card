@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DebCardTest {
@@ -21,18 +23,13 @@ public class DebCardTest {
 
     static void setupAll() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\driver\\win\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./driver/win/chromedriver.exe");
 
     }
 
     @BeforeEach
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-        driver.get("http://localhost:9999");
+    public void setup() { driver = new ChromeDriver();
+
     }
 
 
@@ -45,14 +42,15 @@ public class DebCardTest {
 
     @Test
     void test() {
-        driver.get("http://http://localhost:9999/");
+        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов Иванович");
-        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997777777");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("+79997777777");
 
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
-        driver.findElement(By.tagName("button")).click();//Продолжить
+        driver.findElement(By.tagName("button")).click();
 
         String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+
     }
 }
